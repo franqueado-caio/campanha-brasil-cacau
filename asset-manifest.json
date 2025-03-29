@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/campanha-basil-cacau/static/css/main.e1e960cf.css",
-    "main.js": "/campanha-basil-cacau/static/js/main.b6e2c4d1.js",
+    "main.js": "/campanha-basil-cacau/static/js/main.c0843a66.js",
     "static/js/453.4a66412f.chunk.js": "/campanha-basil-cacau/static/js/453.4a66412f.chunk.js",
     "static/media/fa-solid-900.ttf": "/campanha-basil-cacau/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
     "static/media/banner_content_header_3.webp": "/campanha-basil-cacau/static/media/banner_content_header_3.a1e535f53a3c9b49cc47.webp",
@@ -31,11 +31,11 @@
     "static/media/master-card-ico.svg": "/campanha-basil-cacau/static/media/master-card-ico.a98e40b95aa2f4edf528ea6a5acd821f.svg",
     "static/media/diners-ico.svg": "/campanha-basil-cacau/static/media/diners-ico.6a59fe17dbd6088d81e40b45c64804e3.svg",
     "main.e1e960cf.css.map": "/campanha-basil-cacau/static/css/main.e1e960cf.css.map",
-    "main.b6e2c4d1.js.map": "/campanha-basil-cacau/static/js/main.b6e2c4d1.js.map",
+    "main.c0843a66.js.map": "/campanha-basil-cacau/static/js/main.c0843a66.js.map",
     "453.4a66412f.chunk.js.map": "/campanha-basil-cacau/static/js/453.4a66412f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e1e960cf.css",
-    "static/js/main.b6e2c4d1.js"
+    "static/js/main.c0843a66.js"
   ]
 }
