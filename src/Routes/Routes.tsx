@@ -5,10 +5,10 @@ import CookiesPolicy from '../Pages/CookiesPolicy/CookiesPolicy';
 
 function AppRoutes() {
     return (
-        <Router>
+        <Router basename="/campanha-basil-cacau"> {/* Adiciona o basename aqui */}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/cookies-policy" element={<CookiesPolicy />} /> {/* Adicione a rota para CookiesPolicy */}
+                <Route path="/cookies-policy" element={<CookiesPolicy />} />
             </Routes>
         </Router>
     );
