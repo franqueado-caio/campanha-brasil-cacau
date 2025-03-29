@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+    .search-input-mobile {
+        display: block !important;
+
+    }
+
+    .nav-link {
+        display: none !important;
+    }
+}

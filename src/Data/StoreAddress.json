@@ -1,0 +1,40 @@
+[
+    {
+        "nome": "Brasil Cacau Ipiranga",
+        "endereco": "Av. Nazaré, 1324 - Ipiranga, São Paulo - SP, 04262-000, Brasil",
+        "cep": "04262-000",
+        "map_url": "https://maps.google.com/?cid=934432580185777942"
+    },
+    {
+        "nome": "Brasil Cacau Sacomã",
+        "endereco": "R. Greenfeld, 63 - Ipiranga, São Paulo - SP, 04218-100, Brasil",
+        "cep": "04218-100",
+        "distancia": "1 km",
+        "url": "https://maps.google.com/?cid=3459132930627220289",
+        "map_url": "https://maps.google.com/?cid=3459132930627220289"
+    },
+    {
+        "nome": "Chocolates Brasil Cacau",
+        "endereco": "Av. Conde Francisco Matarazzo, 71 - Centro, São Caetano do Sul - SP, 09520-110, Brasil",
+        "cep": "09520-110",
+        "distancia": "2,7 km",
+        "url": "https://maps.google.com/?cid=10910219979296497559",
+        "map_url": "https://maps.google.com/?cid=10910219979296497559"
+    },
+    {
+        "nome": "Chocolates Brasil Cacau",
+        "endereco": "Av. Dr. Francisco Mesquita, 1000 - Jardim Ibitirama, São Paulo - SP, 03153-001, Brasil",
+        "cep": "03153-001",
+        "distancia": "2,2 km",
+        "url": "https://www.brasilcacau.com.br/",
+        "map_url": "https://maps.google.com/?cid=1466725209922323094"
+    },
+    {
+        "nome": "Brasil Cacau - Plaza Polo - Brás",
+        "endereco": "R. Barão de Ladário, 566 - Brás, São Paulo - SP, 03010-000, Brasil",
+        "cep": "03010-000",
+        "distancia": "8,3 km",
+        "url": "https://www.instagram.com/brasilcacauplazapolobras?igsh=MTVqNDRpcGg5cXA5ag==",
+        "map_url": "https://maps.google.com/?cid=17301808592680560399"
+    }
+]

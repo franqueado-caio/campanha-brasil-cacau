@@ -1,0 +1,29 @@
+.text-title-policy {
+    display: flex;
+    justify-content: center;
+    color: var(--primary-brown);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cookies-policy-content {
+    /* Estilos para o conteúdo da página */
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cookies-policy-content h2 {
+    margin-top: 20px;
+}
+
+.cookies-policy-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10vh;
+}
+
+.cookies-policy-content-subtitle {
+    list-style: circle;
+    font-weight: bold;
+}

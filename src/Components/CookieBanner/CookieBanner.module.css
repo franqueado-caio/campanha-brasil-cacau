@@ -1,0 +1,186 @@
+.cookie-banner {
+    position: fixed;
+    /* Fixa o banner no final da página */
+    bottom: 0;
+    /* Posiciona o banner no final da página */
+    left: 50%;
+    /* Centraliza o banner horizontalmente */
+    transform: translateX(-50%);
+    /* Ajusta o posicionamento para centralizar corretamente */
+    width: 80%;
+    /* Define a largura do banner (ajuste conforme necessário) */
+    max-width: 1300px;
+    /* Define uma largura máxima para o banner (opcional) */
+    z-index: 1000;
+    /* Garante que o banner fique acima de outros elementos */
+
+}
+
+.cookie-content {
+    background-color: var(--primary-brown);
+    display: flex;
+    /* Permite o alinhamento dos elementos internos */
+    align-items: center;
+    /* Alinha os elementos verticalmente ao centro */
+    justify-content: space-between;
+    /* Espaça os elementos internos igualmente */
+    /* Adiciona um espaçamento interno */
+    height: 90px;
+    margin-bottom: 10vh;
+    padding: 15px;
+    border-radius: 4px;
+
+}
+
+.cookie-text {
+    color: white;
+}
+
+.link-text {
+    color: white;
+}
+
+.cookie-options {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    font-size: small;
+    height: 54px;
+    padding: 6px;
+    background-color: var(--primary-orange);
+    border: none;
+    margin-right: 5px;
+    border-radius: 7px;
+    color: white;
+}
+
+.content-cookie-options {
+    display: flex;
+    justify-content: end;
+}
+
+.cookie-options-submit {
+    text-align: center;
+    padding: 13px;
+    text-wrap: nowrap;
+    font-size: small;
+    background-color: var(--primary-orange);
+    border: none;
+    border-radius: 7px;
+    color: white;
+
+}
+
+.cookie-options-privacy {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    font-size: small;
+    height: 54px;
+    padding: 6px;
+    background-color: var(--primary-brown);
+    border: none;
+    margin-right: 5px;
+    border-radius: 7px;
+    color: white;
+}
+
+.cookie-paragraph {
+    font-size: small;
+    margin-top: 14px;
+}
+
+.cookie-logo-br {
+    display: grid;
+    margin-left: 14px;
+    margin-right: 13px;
+    font-family: var(--primary-font);
+    font-weight: 900;
+    color: white;
+}
+
+.cookie-logo-ca {
+    margin-left: 14px;
+    font-family: var(--primary-font);
+    font-weight: 900;
+    color: var(--primary-orange);
+}
+
+@media (max-width: 768px) {
+
+
+    .cookie-logo {
+        font-size: 23px;
+        margin-left: -10px;
+    }
+
+    .cookie-paragraph {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        text-align: left;
+        margin: -130px 109px;
+        width: 70%;
+        font-size: 15px;
+        overflow: hidden;
+    }
+
+    .cookie-options-privacy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .cookie-options {
+        width: 339px;
+        display: flex;
+        justify-content: center;
+        height: 45px;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .cookie-options-submit {
+        width: 339px;
+        display: flex;
+        justify-content: center;
+        height: 45px;
+        font-size: 16px;
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .cookie-content {
+        display: grid;
+        width: 100%;
+        position: fixed;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 1000;
+        padding: 20px;
+        left: 50%;
+        height: 370px;
+    }
+
+    .cookie-banner {
+        width: 100%;
+        /* Altera para 100% */
+        left: 0;
+        /* Altera para 0 */
+        top: 0;
+        /* Adiciona top: 0 para centralizar verticalmente */
+        transform: none;
+        /* Remove a transformação */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content-cookie-options {
+        display: grid;
+        justify-content: center;
+    }
+}

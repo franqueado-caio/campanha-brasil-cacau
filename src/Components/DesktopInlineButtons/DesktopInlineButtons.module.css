@@ -1,0 +1,58 @@
+.btn-desktop {
+    display: flex;
+    height: 55px;
+    width: 280px;
+    justify-content: center;
+    margin-right: 12px;
+    border: none;
+    font-size: 14px;
+    padding: 8px;
+    background-color: var(--primary-green);
+    color: white;
+    font-weight: bold;
+    border-radius: 7px;
+    text-align: center;
+
+}
+
+.content-btn-desktop {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 5vh;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .content-btn-desktop {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: 10px;
+        padding: 0 20px;
+        margin-left: 30px;
+        overflow: hidden;
+    }
+
+
+    .btn-desktop {
+        width: 133px;
+        height: 92px;
+        font-weight: 400;
+    }
+
+    .franchise-button {
+        padding: 30px 20px !important;
+        /* Defina o padding desejado para o botão "seja um franqueado" */
+        text-wrap: nowrap;
+        width: 133px;
+        height: 92px;
+    }
+}
+
+/* ... seus estilos existentes ... */
+
+.franchise-button {
+    padding: 14px 20px;
+    /* Defina o padding desejado para o botão "seja um franqueado" */
+}
