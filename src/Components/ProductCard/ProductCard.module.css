@@ -1,0 +1,110 @@
+.product-card {
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Adicionando box shadow sutil */
+    padding: 10px;
+    margin: 10px;
+    position: relative;
+    font-family: var(--secondary-font);
+    cursor: pointer;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--primary-green);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+.circle-of-the-heart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.icoHeart {
+    width: 100px;
+    height: 43px;
+}
+
+.default-icon {
+    /* Estilos para o ícone padrão */
+}
+
+.hover-icon {
+    /* Estilos para o ícone de hover */
+}
+
+.hidden {
+    display: none;
+}
+
+.product-name {
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--primary-brown);
+}
+
+.product-prices {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.discount-price {
+    font-weight: 900;
+    font-size: 20px;
+    font-family: var(--secondary-font);
+    color: var(--primary-brown);
+}
+
+.buy-button {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background-color: var(--primary-orange);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.content-buy-button {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        width: 160px;
+        height: 390px;
+        margin: 10px 0;
+        display: grid;
+        justify-content: space-between;
+        justify-content: center;
+
+    }
+
+    .product-image {
+        width: 90%;
+    }
+
+    .icoHeart {
+        width: 82%;
+        height: 30px;
+    }
+}

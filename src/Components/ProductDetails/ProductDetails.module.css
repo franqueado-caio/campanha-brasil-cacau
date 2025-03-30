@@ -1,0 +1,126 @@
+.product-details {
+
+    padding: 20px;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 21%;
+    left: 63%;
+    background-color: white;
+    font-family: var(--secondary-font);
+    width: 500px;
+}
+
+.product-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--primary-black);
+}
+
+.product-price {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--primary-brown);
+    font-weight: 900;
+}
+
+.gallery {
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.gallery-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.add-to-cart {
+    background-color: var(--primary-orange);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: white;
+
+}
+
+.delivery-calc {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cep-input {
+    padding: 8px;
+    margin-right: 10px;
+    outline: none;
+}
+
+.calc-button {
+    background-color: var(--primary-orange);
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    color: white;
+}
+
+.cep-link {
+    text-decoration: none;
+    display: none;
+}
+
+.section-header {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    /* Adiciona a linha horizontal */
+    color: var(--primary-black);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.section-header ul,
+li {
+    color: var(--primary-brown);
+    list-style: none;
+    display: flex;
+    justify-content: left;
+}
+
+.description,
+.chocolate-type,
+.product-info,
+.ingredients {
+    margin-bottom: 20px;
+}
+
+.content-description {
+    display: flex;
+    justify-content: left;
+    text-align: left;
+    color: var(--primary-brown);
+}
+
+.toggle-icon {
+    color: var(--primary-brown);
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .product-details {
+        display: flex;
+        justify-content: center;
+        position: initial;
+        width: 100%;
+    }
+}

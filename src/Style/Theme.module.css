@@ -3,6 +3,9 @@
     --primary-orange: #ED5900;
     --primary-brown: #401112;
     --primary-green: #009051;
-    --primary-font: 'Buenard', , serif;
+    --primary-font: 'Buenard', sans-serif;
+    --primary-black: #212121;
+    --primary-gray: #f9f9f4;
+    --secondary-font: "Nunito", sans-serif;
 
 }

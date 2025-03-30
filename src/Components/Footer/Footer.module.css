@@ -14,7 +14,7 @@ footer {
     color: white;
     font-size: 22px;
     font-weight: 900;
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     margin-top: -54px;
 }
 
@@ -22,7 +22,7 @@ footer {
     color: rgb(99, 37, 30);
     font-size: 22px;
     font-weight: 900;
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     margin-top: -41px;
 }
 
@@ -51,7 +51,7 @@ footer {
 }
 
 .newsletter-title {
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     color: white;
 }
 
@@ -60,7 +60,7 @@ footer {
     color: white;
     width: 274px;
     height: 44px;
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     font-size: 12px;
     font-weight: 600;
     border: none;
@@ -75,7 +75,7 @@ footer {
     display: grid;
     grid-column-gap: 45px;
     grid-template-columns: repeat(6, auto);
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
 }
 
 .institutional-links a {
@@ -85,7 +85,7 @@ footer {
 
 .institutional-title {
     color: white;
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     font-weight: bold;
 }
 
@@ -93,7 +93,7 @@ footer {
     width: 282px;
     height: 44px;
     border: none;
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     color: gray;
     margin-right: 10px;
 }
@@ -110,7 +110,7 @@ footer {
     display: flex;
     justify-content: center;
     text-wrap: nowrap;
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     color: var(--primary-brown);
     font-weight: 500;
     margin-top: 0px;

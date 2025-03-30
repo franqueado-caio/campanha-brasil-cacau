@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../Components/Header/Header';
 import CepModal from '../../Components/CepModal/CepModal';
+import Footer from '../../Components/Footer/Footer'
 import styles from './CookiesPolicy.module.css';
 
 function CookiesPolicy() {
@@ -71,6 +72,8 @@ function CookiesPolicy() {
                 <span className={styles['cookies-policy-content-subtitle']}>Entre em contato</span>
                 <p>Se você tiver dúvidas ou achar que suas preocupações não foram tratadas nesta Política de Cookies, entre em contato enviando um e-mail para <b>privacidade@grupocrm.com.br.</b></p>
             </div>
+            <Footer />
+
         </div>
     );
 }

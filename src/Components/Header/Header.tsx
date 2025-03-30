@@ -1,8 +1,10 @@
 import React from 'react';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './Header.module.css';
-
+import styles from './Header.module.css';
 import searchIcon from '../../Assets/Img/search.png';
+import userIco from '../../Assets/Img/user.png';
+import suportIco from '../../Assets/Img/support.png';
+import bagIco from '../../Assets/Img/shopping-bag.png';
 import { useNavigation } from './script'; // Importe a função
 
 
@@ -34,29 +36,30 @@ function Header() {
 
                                 </form>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">
+                            <li className="nav-item" >
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Seja um franqueado
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Clube Brasil Cacau
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                                    <img className={styles['iteration-header']} src={userIco} alt="login ou registro" />
                                     Entre ou cadastre-se
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
-                                    <i className="fas fa-headphones-alt"></i>
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                                    <img className={styles['iteration-header']} src={suportIco} alt="Suporte" />
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
-                                    <i className="fas fa-shopping-bag"></i>
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                                    <img className={styles['iteration-header']} src={bagIco} alt="Sacola de compras" />
                                 </a>
                             </li>
                         </ul>
@@ -66,52 +69,52 @@ function Header() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Todos os Produtos
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Páscoa
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Brasil Cacau para Empresas
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Novidades
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Cartão Presente
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Infantil
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Trufas
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Presentes
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Tabletes
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Bem me Faz
                                 </a>
                             </li>

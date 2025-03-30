@@ -19,20 +19,184 @@
     outline: none;
     flex-grow: 1;
     padding-left: 20px;
+    color: var(--primary-brown);
 }
 
 .cep-menu {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
-    background-color: white;
-    border: 1px solid #ccc;
+    width: 438px;
+    background-color: #f9f9f4;
     padding: 10px;
     z-index: 1000;
+    height: 183px;
+    border-radius: 4px;
 }
 
 .arrow-icon {
     color: var(--primary-brown);
     border: none;
+}
+
+.location-ico {
+    img {
+        width: 20px;
+    }
+}
+
+.content-text-cep-menu {
+    font-family: var(--secondary-font);
+    color: var(--primary-brown);
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 5vh;
+    font-weight: 700;
+}
+
+.content-btn-menu {
+    width: 134px;
+    height: 44px;
+    font-size: 15px;
+    background-color: var(--primary-orange);
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+
+.content-input-menu {
+    width: 254;
+    height: 44px;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.258);
+    margin-right: 20px;
+    outline: none;
+    /* Remove a borda de foco padrão */
+}
+
+.cep-menu-select-address {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 438px;
+    background-color: white;
+    padding: 10px;
+    z-index: 1000;
+    height: 453px;
+    border-radius: 4px;
+}
+
+.content-menu-select-address {
+    font-family: var(--secondary-font);
+    color: var(--primary-brown);
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 5vh;
+    font-weight: 700;
+}
+
+.content-menu-option-address {
+    font-family: var(--secondary-font);
+    color: var(--primary-black);
+    font-weight: 700;
+}
+
+.content-home-address {
+    width: 393px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 5px 10px 0;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    cursor: pointer;
+    min-height: 110px;
+}
+
+.content-store-address {
+    width: 393px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 5px 10px 0;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    cursor: pointer;
+    min-height: 110px;
+}
+
+.content-home-address-text {
+    font-size: small;
+    color: var(--primary-black);
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    width: 290px;
+}
+
+.content-home-address-ico {
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+.content-home-store-ico {
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.content-home-address-radio {
+    /* Estilos para os radio buttons */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-orange);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    margin-right: 10px;
+    /* Adiciona espaço entre o radio button e o texto */
+}
+
+.content-home-address-radio:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-orange);
+    border-radius: 50%;
+}
+
+.content-home-address-radio:focus {
+    box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.5);
+}
+
+.go-shopping {
+    width: 185px;
+    height: 44px;
+    background-color: var(--primary-orange);
+    border: none;
+    color: white;
 }

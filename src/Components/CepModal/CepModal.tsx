@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import locationICO from '../../Assets/Img/pin.png';
 import homeICO from '../../Assets/Img/home.png';
 import storeIco from '../../Assets/Img/shop.png';
-
+import arrowIco from '../../Assets/Img/down-arrow.png';
 import styles from './CepModal.module.css'; // Importe o arquivo CSS
 
 function CepModal() {
@@ -22,36 +22,36 @@ function CepModal() {
         <div className={styles['cep-modal']}>
             <div className={styles['cep-input']} onClick={toggleOpen}>
                 <span className={styles['location-ico']}> <img src={locationICO} alt="icone-localização" /></span> {/* Substitua por seu ícone de localização */}
-                <input type="text" placeholder="04236052" />
-                <span className={styles['arrow-icon']}>▼</span>
+                <input type="text" placeholder="00000-000" />
+                <span className={styles['arrow-icon']}> <img src={arrowIco} alt="" /></span>
             </div>
             {isOpen && !showOptions && (
                 <div className={styles['cep-menu']}>
-                    {/* Conteúdo do menu de input de CEP aqui */}
-                    <input type="text" placeholder="Digite o CEP" />
-                    <button onClick={showDeliveryOptions}>Mostrar opções de entrega</button>
+                    <span className={styles['content-text-cep-menu']}>Digite seu CEP para ter acesso aos produtos e ofertas da sua região:</span>
+                    <input className={styles['content-input-menu']} type="text" placeholder="Digite o CEP" />
+                    <button className={styles['content-btn-menu']} onClick={showDeliveryOptions}>Verificar</button>
                 </div>
             )}
             {isOpen && showOptions && (
-                <div className={styles['cep-menu']}>
+                <div className={styles['cep-menu-select-address']}>
                     {/* Conteúdo do menu de opções de entrega aqui */}
                     <div>
-                        <h3>Como deseja receber suas compras?</h3>
-                        <p>Receber em:</p>
-                        <div>
-                            <input type="radio" id="receiveHome" name="deliveryOption" />
-                            <label htmlFor="receiveHome">
-                                <span><img src={homeICO} alt="icone-casa" /></span> Rua das Crianças, - Sacomã - São Paulo/SP
+                        <h3 className={styles['content-menu-select-address']}>Como deseja receber suas compras?</h3>
+                        <p className={styles['content-menu-option-address']}>Receber em:</p>
+                        <div className={styles['content-home-address']}>
+                            <input className={styles['content-home-address-radio']} type="radio" id="receiveHome" name="deliveryOption" />
+                            <label className={styles['content-home-address-text']} htmlFor="receiveHome">
+                                <span><img className={styles['content-home-address-ico']} src={homeICO} alt="icone-casa" /></span> Rua das Crianças, - Sacomã - São Paulo/SP
                             </label>
                         </div>
-                        <p>Retirar na loja:</p>
-                        <div>
-                            <input type="radio" id="pickupStore" name="deliveryOption" />
-                            <label htmlFor="pickupStore">
-                                <span><img src={storeIco} alt="" /></span> Chocolates Brasil Cacau - Sacoma Rua Greenfield, 63 - Ipiranga São Paulo/SP
+                        <p className={styles['content-menu-option-address']}>Retirar na loja:</p>
+                        <div className={styles['content-store-address']}>
+                            <input className={styles['content-home-address-radio']} type="radio" id="pickupStore" name="deliveryOption" />
+                            <label className={styles['content-home-address-text']} htmlFor="pickupStore">
+                                <span><img className={styles['content-home-store-ico']} src={storeIco} alt="" /></span> Chocolates Brasil Cacau - Sacoma Rua Greenfield, 63 - Ipiranga São Paulo/SP
                             </label>
                         </div>
-                        <button>Ir para as compras</button>
+                        <button className={styles['go-shopping']}>Ir para as compras</button>
                     </div>
                 </div>
             )}
