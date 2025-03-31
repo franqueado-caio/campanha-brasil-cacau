@@ -47,6 +47,7 @@ const DataProducts = [
     {
         id: 3,
         name: 'Ovo de Páscoa Recheado Meio a Meio Ovomaltine® 370g',
+        price: 99.90,
         description: "O Ovo de Páscoa Recheado Ovomaltine® 370g da Brasil Cacau é uma deliciosa colaboração que combina a expertise da renomada marca brasileira com a crocância e sabor característicos do Ovomaltine. Uma opção irresistível para os apreciadores de chocolate e fãs do Ovomaltine®.",
         // oldPrice: 129.99,
         imageUrl: require("../../Assets/ProductsImg/OvodePáscoaRecheadoMeioaMeioOvomaltine370g_1.png"),

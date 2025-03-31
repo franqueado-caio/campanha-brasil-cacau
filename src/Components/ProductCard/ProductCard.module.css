@@ -100,11 +100,12 @@
     }
 
     .product-image {
-        width: 90%;
+        width: 100%;
     }
 
     .icoHeart {
-        width: 82%;
-        height: 30px;
+        width: 100%;
+        height: 32px;
+        ;
     }
 }
