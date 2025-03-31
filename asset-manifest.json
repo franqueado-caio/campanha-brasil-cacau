@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/campanha-basil-cacau/static/css/main.ecc96700.css",
-    "main.js": "/campanha-basil-cacau/static/js/main.f1048e22.js",
+    "main.css": "/campanha-basil-cacau/static/css/main.53b4baa7.css",
+    "main.js": "/campanha-basil-cacau/static/js/main.9162f8c0.js",
     "static/js/453.924fd1bc.chunk.js": "/campanha-basil-cacau/static/js/453.924fd1bc.chunk.js",
     "static/media/OvodePáscoaRecheadoKitKatNestlé370g_4.png": "/campanha-basil-cacau/static/media/OvodePáscoaRecheadoKitKatNestlé370g_4.3af32521457aa20f35a4.png",
     "static/media/OvodePáscoaRecheadoKitKatNestlé370g_3.png": "/campanha-basil-cacau/static/media/OvodePáscoaRecheadoKitKatNestlé370g_3.cd5ed7d54a7457e4c991.png",
@@ -44,12 +44,12 @@
     "static/media/amex-ico.svg": "/campanha-basil-cacau/static/media/amex-ico.95f011c6084e2d05c4088bf7928d8a07.svg",
     "static/media/master-card-ico.svg": "/campanha-basil-cacau/static/media/master-card-ico.a98e40b95aa2f4edf528ea6a5acd821f.svg",
     "static/media/diners-ico.svg": "/campanha-basil-cacau/static/media/diners-ico.6a59fe17dbd6088d81e40b45c64804e3.svg",
-    "main.ecc96700.css.map": "/campanha-basil-cacau/static/css/main.ecc96700.css.map",
-    "main.f1048e22.js.map": "/campanha-basil-cacau/static/js/main.f1048e22.js.map",
+    "main.53b4baa7.css.map": "/campanha-basil-cacau/static/css/main.53b4baa7.css.map",
+    "main.9162f8c0.js.map": "/campanha-basil-cacau/static/js/main.9162f8c0.js.map",
     "453.924fd1bc.chunk.js.map": "/campanha-basil-cacau/static/js/453.924fd1bc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ecc96700.css",
-    "static/js/main.f1048e22.js"
+    "static/css/main.53b4baa7.css",
+    "static/js/main.9162f8c0.js"
   ]
 }
