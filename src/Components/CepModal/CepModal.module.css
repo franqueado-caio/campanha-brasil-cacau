@@ -250,4 +250,8 @@
         width: 15px;
         height: 15px;
     }
+
+    .content-input-menu {
+        width: 55%;
+    }
 }
