@@ -30,12 +30,15 @@
     display: flex;
     overflow-x: auto;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .gallery-image {
     width: 80px;
     height: 80px;
     margin-right: 10px;
+    cursor: pointer;
+
 }
 
 .add-to-cart {

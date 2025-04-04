@@ -43,10 +43,33 @@ header {
             padding-left: 45px !important;
         }
 
+        .nav-item {
+            display: none;
+        }
 
-        .custon-link,
-        a {
-            display: none !important;
+        .user-login-or-register {
+            position: absolute;
+            top: 6%;
+            left: 65%;
+        }
+
+        .iteration-header-text {
+            font-family: var(--secondary-font);
+            display: none;
+        }
+
+        .iteration-bag-item {
+            position: absolute;
+            top: 6%;
+            left: 79%;
         }
     }
+}
+
+.user-login-or-register {
+    display: block !important;
+}
+
+.iteration-header-text {
+    font-family: var(--secondary-font);
 }

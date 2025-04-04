@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.module.css';
 import styles from './Header.module.css';
 import searchIcon from '../../Assets/Img/search.png';
 import userIco from '../../Assets/Img/user.png';
 import suportIco from '../../Assets/Img/support.png';
 import bagIco from '../../Assets/Img/shopping-bag.png';
-import { useNavigation } from './script'; // Importe a função
-
+import { useNavigation } from './script';
+import LoginOrRegisterModal from '../LoginOrRegisterModal/LoginOrRegisterModal'; // Importe o modal
 
 function Header() {
-    const { navigateToHome } = useNavigation(); // Obtenha a função de navegação
+    const { navigateToHome } = useNavigation();
+    const [showModal, setShowModal] = useState(false); // Estado para controlar o modal
+
     return (
         <header className="custon-header">
             <div className="container">
@@ -27,37 +29,43 @@ function Header() {
                                         <img id='search-ico' src={searchIcon} alt="Buscar" style={{ width: '24px', height: '24px', position: "absolute", display: "flex", justifyContent: "flex-start", direction: "initial", marginLeft: "12px", marginTop: "-10px" }} />
                                     </button>
                                     <input
-
                                         className="form-control custon-input"
                                         type="search"
                                         placeholder="O que você busca? (Ex: trufa)"
                                         aria-label="Search"
                                     />
-
                                 </form>
                             </li>
-                            <li className="nav-item" >
+                            <li className={styles['nav-item']} >
                                 <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Seja um franqueado
                                 </a>
                             </li>
-                            <li className="nav-item">
+                            <li className={styles['nav-item']}>
                                 <a className="nav-link" href="#" style={{ color: "white" }}>
                                     Clube Brasil Cacau
                                 </a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                            <li className={styles['user-login-or-register']}>
+                                <a
+                                    className="nav-link"
+                                    href="#"
+                                    style={{ color: "white" }}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setShowModal(true);
+                                    }}
+                                >
                                     <img className={styles['iteration-header']} src={userIco} alt="login ou registro" />
-                                    Entre ou cadastre-se
+                                    <span className={styles['iteration-header-text']}>Entre ou cadastre-se</span>
                                 </a>
                             </li>
-                            <li className="nav-item">
+                            <li className={styles['nav-item']}>
                                 <a className="nav-link" href="#" style={{ color: "white" }}>
                                     <img className={styles['iteration-header']} src={suportIco} alt="Suporte" />
                                 </a>
                             </li>
-                            <li className="nav-item">
+                            <li className={styles['iteration-bag-item']}>
                                 <a className="nav-link" href="#" style={{ color: "white" }}>
                                     <img className={styles['iteration-header']} src={bagIco} alt="Sacola de compras" />
                                 </a>
@@ -122,6 +130,7 @@ function Header() {
                     </div>
                 </nav>
             </div >
+            {showModal && <LoginOrRegisterModal onClose={() => setShowModal(false)} />} {/* Renderiza o modal */}
         </header >
     );
 }

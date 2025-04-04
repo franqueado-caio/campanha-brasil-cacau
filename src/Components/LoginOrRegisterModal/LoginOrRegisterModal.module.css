@@ -1,0 +1,144 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adiciona opacidade ao fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Garante que o modal fique sobre os outros elementos */
+    font-family: var(--secondary-font);
+
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    z-index: 1001;
+    /* Garante que o conteúdo do modal fique sobre o overlay */
+    background-color: var(--primary-brown);
+
+}
+
+/* Restante do CSS permanece igual */
+
+.modal-content h2 {
+    margin-bottom: 50px;
+}
+
+.modal-content input,
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--primary-brown);
+    outline: none;
+}
+
+.modal-content button {
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-content button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.modal-content .close-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-content .error {
+    color: red;
+}
+
+.modal-text-logo-b,
+.modal-text-logo-c {
+    font-size: 25px;
+
+}
+
+.modal-text-logo-b {
+    color: white;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: var(--primary-brown);
+    width: 98px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+}
+
+.modal-text-logo-c {
+    background-color: var(--primary-brown);
+    color: var(--primary-orange) !important;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color: white;
+    width: 98px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+}
+
+.modal-text-login {
+    font-size: 25px;
+    font-weight: 900;
+    color: white;
+}
+
+.modal-btn-submit,
+.modal-btn-islogin,
+.close-button {
+    background-color: var(--primary-orange);
+}
+
+.modal-content-text-logo {
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    margin-top: -23%;
+    margin-bottom: 5vh;
+
+}
+
+.modal-checkbox {
+    color: white;
+}
+
+.modal-checkbox-input {
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 13px;
+}
+
+.modal-checkbox-input:checked {
+    accent-color: var(--primary-orange);
+    /* Substitua 'red' pela cor desejada */
+}
+
+@media (max-width: 768px) {
+
+    .modal-welcome-email,
+    .modal-welcome-passworld {
+        width: 100% !important;
+    }
+
+}

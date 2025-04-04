@@ -1,27 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ProductDetails.module.css';
 import DataProducts from '../../Components/DataProducts/DataProducts';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface ProductDetailsProps {
     productId: number;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
-    const product = DataProducts.find((p) => p.id === productId);
+    const { id } = useParams();
     const navigate = useNavigate();
+    const [product, setProduct] = useState(DataProducts.find((p) => p.id === parseInt(id || productId.toString())));
 
     const [showDescription, setShowDescription] = useState(false);
     const [showChocolateType, setShowChocolateType] = useState(true);
     const [showProductInfo, setShowProductInfo] = useState(false);
     const [showIngredients, setShowIngredients] = useState(false);
 
+    useEffect(() => {
+        const newProduct = DataProducts.find((p) => p.id === parseInt(id || productId.toString()));
+        if (newProduct) {
+            setProduct(newProduct);
+        }
+    }, [id, productId]);
+
     if (!product) {
         return <div>Produto não encontrado.</div>;
     }
 
     const handleProductClick = (relatedProductId: number) => {
-        window.location.href = `/campanha-basil-cacau/product/${relatedProductId}`;
+        setTimeout(() => {
+            window.location.href = `/product/${relatedProductId}`;
+        }, 1000); // 2 segundos de delay antes do reload
     };
 
     return (
@@ -46,7 +56,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
             <div className={styles['delivery-calc']}>
                 <input type="text" placeholder="Digite seu CEP" className={styles['cep-input']} />
                 <button className={styles['calc-button']}>Calcular</button>
-                <a href="#" className={styles['cep-link']}>Não sei meu CEP</a>
             </div>
 
             <div className={styles['description']}>
