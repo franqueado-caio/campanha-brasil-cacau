@@ -1,14 +1,18 @@
 import React from 'react';
-import AppRoutes from '../src/Routes/Routes';
-import '../src/Style/Theme.module.css'
-
-
+import AppRoutes from './Routes/Routes';
+import './Style/Theme.module.css';
+import { AuthProvider } from './Contexts/AuthContext';
+import { ShoppingBagProvider } from './Contexts/ShoppingBagContext';
 
 function App() {
   return (
-    <div>
-      <AppRoutes />
-    </div>
+    <AuthProvider>
+      <ShoppingBagProvider>
+        <div>
+          <AppRoutes />
+        </div>
+      </ShoppingBagProvider>
+    </AuthProvider>
   );
 }
 

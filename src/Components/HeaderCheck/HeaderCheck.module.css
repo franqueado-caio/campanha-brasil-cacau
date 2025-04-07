@@ -1,0 +1,14 @@
+.header {
+    padding: 10px;
+    font-family: var(--secondary-font);
+    font-weight: 900;
+    font-size: 23px;
+}
+
+.logoBrasil {
+    color: white;
+}
+
+.logoCacau {
+    color: var(--primary-brown);
+}

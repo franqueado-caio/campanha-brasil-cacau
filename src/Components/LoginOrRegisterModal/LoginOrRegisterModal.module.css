@@ -141,4 +141,7 @@
         width: 100% !important;
     }
 
+    .modal-content h2 {
+        margin-bottom: 43px;
+    }
 }

@@ -1,8 +1,9 @@
+// src/Components/CategoryDetails/CategoryDetails.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard from '../../Components/ProductCard/ProductCard'; // Importe o componente ProductCard
-import styles from './CategoryDetails.module.css'; // Importe o arquivo CSS
-import exampleProducts from '../DataProducts/DataProducts'; // Importe o array de produtos
+import ProductCard, { ProductCardProps } from '../../Components/ProductCard/ProductCard';
+import styles from './CategoryDetails.module.css';
+import exampleProducts, { Product } from '../DataProducts/DataProducts';
 
 interface CategoryDetailsProps {
     searchTerm: string;
@@ -13,12 +14,12 @@ interface CategoryDetailsProps {
 const CategoryDetails: React.FC<CategoryDetailsProps> = ({ searchTerm, icoHeart }) => {
     const navigate = useNavigate();
 
-    const filteredProducts = exampleProducts.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredProducts = exampleProducts.filter(
+        (product): product is Product => product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const handleProductClick = (product: any) => {
-        navigate(`/product/${product.id}`); // Redireciona para /product/:id
+    const handleProductClick = (product: Product) => {
+        navigate(`/product/${product.id}`);
     };
 
     return (
@@ -27,7 +28,14 @@ const CategoryDetails: React.FC<CategoryDetailsProps> = ({ searchTerm, icoHeart 
                 {filteredProducts.map((product) => (
                     <ProductCard
                         key={product.id}
-                        product={product}
+                        product={{
+                            id: product.id,
+                            name: product.name,
+                            imageUrl: product.imageUrl || '', // Garante que imageUrl seja string
+                            secondaryImageUrl: product.secondaryImageUrl,
+                            price: product.price,
+                            discount: product.discount,
+                        }}
                         icoHeart={icoHeart}
                         onClick={() => handleProductClick(product)}
                     />

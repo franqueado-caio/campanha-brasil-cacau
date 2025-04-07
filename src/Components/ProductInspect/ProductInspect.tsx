@@ -3,7 +3,7 @@ import styles from './ProductInspect.module.css';
 import GoBack from "../../Assets/Img/left.png";
 import ProductInspectGallery from '../../Components/ProductInspectGallery/ProductInpectGallery'; // Importe o componente
 
-interface ProductInspectProps {
+export interface ProductInspectProps {
     product: {
         id: number;
         name: string;

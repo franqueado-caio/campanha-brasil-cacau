@@ -4,9 +4,10 @@ import styles from './CarouselContent.module.css';
 interface CarouselProps {
     imagesDesktop: string[];
     imagesMobile: string[];
+    autoplayInterval?: number; // Adicionamos uma prop opcional para controlar o intervalo
 }
 
-const CarouselContent: React.FC<CarouselProps> = ({ imagesDesktop, imagesMobile }) => {
+const CarouselContent: React.FC<CarouselProps> = ({ imagesDesktop, imagesMobile, autoplayInterval = 3000 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const images = isMobile ? imagesMobile : imagesDesktop;
@@ -16,6 +17,18 @@ const CarouselContent: React.FC<CarouselProps> = ({ imagesDesktop, imagesMobile 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        if (autoplayInterval > 0) {
+            const timer = setInterval(() => {
+                setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+            }, autoplayInterval);
+
+            // Limpa o intervalo quando o componente é desmontado
+            return () => clearInterval(timer);
+        }
+        // Se autoplayInterval for 0 ou negativo, o autoplay não será iniciado
+    }, [autoplayInterval, images.length]); // Dependências importantes para o efeito
 
     const handlePrev = () => {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);

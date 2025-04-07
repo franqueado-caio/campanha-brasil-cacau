@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CookieBanner.module.css';
 
 function CookieBanner() {
     const navigate = useNavigate();
-    const [isVisible, setIsVisible] = useState(true); // Adicione um estado para controlar a visibilidade do banner
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const consent = localStorage.getItem('cookieConsent');
+        if (consent) {
+            setIsVisible(false);
+        }
+    }, []); // Executa apenas na montagem do componente
 
     const handleCookiesPolicyClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
@@ -12,17 +19,17 @@ function CookieBanner() {
     };
 
     const handleAcceptAll = () => {
-        localStorage.setItem('cookieConsent', 'accepted'); // Armazena a decisão no cache
-        setIsVisible(false); // Fecha o banner
+        localStorage.setItem('cookieConsent', 'accepted');
+        setIsVisible(false);
     };
 
     const handleRejectAll = () => {
-        localStorage.setItem('cookieConsent', 'rejected'); // Armazena a decisão no cache
-        setIsVisible(false); // Fecha o banner
+        localStorage.setItem('cookieConsent', 'rejected');
+        setIsVisible(false);
     };
 
     if (!isVisible) {
-        return null; // Não renderiza o banner se não estiver visível
+        return null;
     }
 
     return (

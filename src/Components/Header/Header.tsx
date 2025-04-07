@@ -6,11 +6,32 @@ import userIco from '../../Assets/Img/user.png';
 import suportIco from '../../Assets/Img/support.png';
 import bagIco from '../../Assets/Img/shopping-bag.png';
 import { useNavigation } from './script';
-import LoginOrRegisterModal from '../LoginOrRegisterModal/LoginOrRegisterModal'; // Importe o modal
+import LoginOrRegisterModal from '../LoginOrRegisterModal/LoginOrRegisterModal';
+import { useAuth } from '../../Contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useShoppingBag } from '../../Contexts/ShoppingBagContext'; // Importe o hook do contexto
 
-function Header() {
+interface HeaderProps {
+    // onBagIconClick?: () => void; // Remova ou deixe como está, a lógica agora está interna
+}
+
+function Header({ /* onBagIconClick */ }: HeaderProps) {
     const { navigateToHome } = useNavigation();
-    const [showModal, setShowModal] = useState(false); // Estado para controlar o modal
+    const [showModal, setShowModal] = useState(false);
+    const { loggedInUser, logout } = useAuth();
+    const navigate = useNavigate();
+    const { bagItems } = useShoppingBag(); // Acesse os itens da sacola
+    const itemCount = bagItems.reduce((sum, item) => sum + item.quantity, 0);
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
+
+    const handleBagClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        navigate('/bag'); // Navega para a página da sacola
+    };
 
     return (
         <header className="custon-header">
@@ -46,30 +67,56 @@ function Header() {
                                     Clube Brasil Cacau
                                 </a>
                             </li>
-                            <li className={styles['user-login-or-register']}>
-                                <a
-                                    className="nav-link"
-                                    href="#"
-                                    style={{ color: "white" }}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setShowModal(true);
-                                    }}
-                                >
-                                    <img className={styles['iteration-header']} src={userIco} alt="login ou registro" />
-                                    <span className={styles['iteration-header-text']}>Entre ou cadastre-se</span>
-                                </a>
-                            </li>
+                            {loggedInUser ? (
+                                <li className={styles['user-login-or-register']}>
+                                    <div className="nav-link" style={{ color: "white", display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                                        <img className={styles['iteration-header']} src={userIco} alt="Usuário logado" />
+                                        <span className={styles['iteration-header-text']}>Bem-vindo(a), {loggedInUser.nome}</span>
+                                    </div>
+                                </li>
+                            ) : (
+                                <li className={styles['user-login-or-register']}>
+                                    <a
+                                        className="nav-link"
+                                        href="#"
+                                        style={{ color: "white" }}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setShowModal(true);
+                                        }}
+                                    >
+                                        <img className={styles['iteration-header']} src={userIco} alt="login ou registro" />
+                                        <span className={styles['iteration-header-text']}>Entre ou cadastre-se</span>
+                                    </a>
+                                </li>
+                            )}
                             <li className={styles['nav-item']}>
                                 <a className="nav-link" href="#" style={{ color: "white" }}>
                                     <img className={styles['iteration-header']} src={suportIco} alt="Suporte" />
                                 </a>
                             </li>
                             <li className={styles['iteration-bag-item']}>
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                                <a
+                                    className="nav-link"
+                                    href="#"
+                                    style={{ color: "white", cursor: "pointer", position: 'relative', display: 'inline-block' }}
+                                    onClick={handleBagClick}
+                                >
                                     <img className={styles['iteration-header']} src={bagIco} alt="Sacola de compras" />
+                                    {itemCount > 0 && (
+                                        <div className={styles['content-item-count']}>
+                                            <span className={styles['item-count']}>{itemCount}</span>
+                                        </div>
+                                    )}
                                 </a>
                             </li>
+                            {loggedInUser && (
+                                <li className={styles['nav-item']}>
+                                    <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}>
+                                        Sair
+                                    </button>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </nav>
@@ -78,59 +125,15 @@ function Header() {
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
                                 <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Todos os Produtos
+                                    {/* Todos os Produtos */}
                                 </a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Páscoa
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Brasil Cacau para Empresas
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Novidades
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Cartão Presente
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Infantil
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Trufas
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Presentes
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Tabletes
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
-                                    Bem me Faz
-                                </a>
-                            </li>
+                            {/* Outros links de categoria */}
                         </ul>
                     </div>
                 </nav>
             </div >
-            {showModal && <LoginOrRegisterModal onClose={() => setShowModal(false)} />} {/* Renderiza o modal */}
+            {showModal && <LoginOrRegisterModal isOpen={showModal} onClose={() => setShowModal(false)} />}
         </header >
     );
 }

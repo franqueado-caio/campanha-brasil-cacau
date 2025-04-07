@@ -1,24 +1,33 @@
+// src/Components/ProductDetails/ProductDetails.tsx
 import React, { useState, useEffect } from 'react';
 import styles from './ProductDetails.module.css';
-import DataProducts from '../../Components/DataProducts/DataProducts';
+import DataProducts, { Product } from '../../Components/DataProducts/DataProducts';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useShoppingBag } from '../../Contexts/ShoppingBagContext';
+import ModalResponse from '../ModalResponse/ModalResponse'; // Importe o ModalResponse
 
 interface ProductDetailsProps {
-    productId: number;
+    productId?: number;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
-    const { id } = useParams();
+    const { id } = useParams<{ id?: string }>();
     const navigate = useNavigate();
-    const [product, setProduct] = useState(DataProducts.find((p) => p.id === parseInt(id || productId.toString())));
+    const [product, setProduct] = useState<Product | undefined>(
+        DataProducts.find((p) => p.id === parseInt(id || productId?.toString() || '0'))
+    );
+    const { addItem } = useShoppingBag();
 
     const [showDescription, setShowDescription] = useState(false);
     const [showChocolateType, setShowChocolateType] = useState(true);
     const [showProductInfo, setShowProductInfo] = useState(false);
     const [showIngredients, setShowIngredients] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+    const [modalTitle, setModalTitle] = useState('');
 
     useEffect(() => {
-        const newProduct = DataProducts.find((p) => p.id === parseInt(id || productId.toString()));
+        const newProduct = DataProducts.find((p) => p.id === parseInt(id || productId?.toString() || '0'));
         if (newProduct) {
             setProduct(newProduct);
         }
@@ -28,10 +37,23 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
         return <div>Produto não encontrado.</div>;
     }
 
+    const handleAddToCart = () => {
+        if (product) {
+            addItem(product);
+            setModalTitle('Sucesso!');
+            setModalMessage(`${product.name} adicionado à sacola!`);
+            setModalVisible(true);
+        }
+    };
+
+    const handleCloseModal = () => {
+        setModalVisible(false);
+    };
+
     const handleProductClick = (relatedProductId: number) => {
         setTimeout(() => {
-            window.location.href = `/product/${relatedProductId}`;
-        }, 1000); // 2 segundos de delay antes do reload
+            navigate(`/product/${relatedProductId}`);
+        }, 1000);
     };
 
     return (
@@ -51,7 +73,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
                 ))}
             </div>
 
-            <button className={styles['add-to-cart']}>Adicionar à sacola</button>
+            <button className={styles['add-to-cart']} onClick={handleAddToCart}>Adicionar à sacola</button>
 
             <div className={styles['delivery-calc']}>
                 <input type="text" placeholder="Digite seu CEP" className={styles['cep-input']} />
@@ -83,14 +105,21 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
                 <div className={styles['section-header']} onClick={() => setShowIngredients(!showIngredients)}>
                     Ingredientes <span className={styles['toggle-icon']}>{showIngredients ? '▲' : '▼'}</span>
                 </div>
-                {showIngredients && (
+                {showIngredients && product.ingredients && (
                     <ul>
-                        {product.ingredients.map((ingredient, index) => (
+                        {product.ingredients.map((ingredient: string, index: number) => (
                             <li key={index}>{ingredient}</li>
                         ))}
                     </ul>
                 )}
             </div>
+
+            <ModalResponse
+                show={modalVisible}
+                onClose={handleCloseModal}
+                title={modalTitle}
+                message={modalMessage}
+            />
         </div>
     );
 };

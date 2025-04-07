@@ -1,4 +1,20 @@
-const DataProducts = [
+// src/Components/DataProducts/DataProducts.ts
+export interface Product {
+    id: number;
+    name: string;
+    description?: string;
+    price?: number;
+    // oldPrice?: number;
+    discount?: string;
+    imageUrl?: string;
+    secondaryImageUrl?: string;
+    gallery?: string[]; // Alterado para string[] pois você está usando require
+    chocolateType?: string;
+    productInfo?: string;
+    ingredients: string[];
+}
+
+const DataProducts: Product[] = [
     {
         id: 1,
         name: 'Ovo de Páscoa Recheado Lollo® Nestlé® 370g',

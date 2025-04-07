@@ -255,3 +255,8 @@
         width: 55%;
     }
 }
+
+.number-content-input {
+    font-weight: 900;
+    color: var(--primary-brown);
+}

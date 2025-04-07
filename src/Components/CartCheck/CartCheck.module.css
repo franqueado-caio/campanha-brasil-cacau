@@ -1,0 +1,253 @@
+.cart-check {
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.cart-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 0.5fr;
+    /* Ajuste as proporções conforme necessário */
+    padding: 10px 0;
+    color: var(--primary-brown);
+    font-weight: bold;
+    text-align: left;
+    margin-top: 10vh;
+}
+
+.header-produto {
+    grid-column: 1;
+}
+
+.header-entrega {
+    grid-column: 2;
+    text-align: center;
+}
+
+.header-preco {
+    grid-column: 3;
+    text-align: center;
+}
+
+.header-quantidade {
+    grid-column: 4;
+    text-align: center;
+}
+
+.header-total {
+    grid-column: 5;
+    text-align: right;
+}
+
+.cart-items-list {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 0.5fr;
+    /* Mesmas proporções do header */
+    padding: 15px 0;
+    border-top: 1px solid #f0f0f0;
+    align-items: center;
+}
+
+.item-produto {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.item-name {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.item-weight {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.item-entrega {
+    grid-column: 2;
+    text-align: center;
+    color: #555;
+}
+
+.item-preco {
+    grid-column: 3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.old-price {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.current-price {
+    font-weight: bold;
+    color: #333;
+}
+
+.item-quantidade {
+    grid-column: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-button {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 3px;
+}
+
+.quantity {
+    font-size: 1rem;
+    margin: 0 10px;
+}
+
+.item-total {
+    grid-column: 5;
+    text-align: right;
+    font-weight: bold;
+    color: #333;
+}
+
+.remove-button {
+    grid-column: 6;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.remove-button img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.remove-button img:hover {
+    opacity: 1;
+}
+
+.empty-cart {
+    padding: 20px;
+    text-align: center;
+    color: #777;
+}
+
+
+
+/* Media Query para telas menores (celulares - geralmente abaixo de 768px de largura) */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: row;
+        /* Garante que os itens fiquem em linha */
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .item-produto {
+        flex-basis: 50%;
+        /* Ocupa metade da largura para imagem e nome */
+        margin-right: 5px;
+    }
+
+    .item-image {
+        width: 40px;
+        height: 40px;
+        margin-right: 5px;
+    }
+
+    .item-name {
+        font-size: 0.8rem;
+        font-size: 0.8rem;
+        position: absolute;
+        top: 33%;
+        left: 1%;
+    }
+
+    .item-preco {
+        align-items: flex-end;
+        margin-left: 5px;
+    }
+
+    .current-price {
+        font-size: 0.9rem;
+    }
+
+    .item-quantidade {
+        margin-left: 5px;
+    }
+
+    .quantity-button {
+        padding: 3px 6px;
+        font-size: 0.8rem;
+        min-width: auto;
+        /* Permite que os botões se ajustem ao conteúdo */
+    }
+
+    .quantity {
+        font-size: 0.8rem;
+        margin: 0 3px;
+        min-width: auto;
+    }
+
+    .item-total {
+        font-size: 0.9rem;
+        text-align: right;
+        min-width: auto;
+        margin-left: 5px;
+    }
+
+    .remove-button {
+        margin-left: 5px;
+        padding: 3px;
+    }
+
+    .remove-button img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .item-entrega {
+        font-size: small;
+    }
+}
+
+/* Media Query para telas ainda menores (opcional) */
+@media (max-width: 480px) {
+    .item-produto {
+        flex-basis: 60%;
+        /* Dá mais espaço para o nome em telas muito pequenas */
+    }
+
+    .item-preco {
+        align-items: flex-end;
+    }
+
+    .item-quantidade {
+        flex-direction: row;
+        /* Garante que os botões e a quantidade fiquem em linha */
+    }
+}

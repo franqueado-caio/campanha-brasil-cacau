@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import locationICO from '../../Assets/Img/pin.png';
 import homeICO from '../../Assets/Img/home.png';
 import storeIco from '../../Assets/Img/shop.png';
@@ -27,56 +28,91 @@ interface Loja {
     cep: string;
 }
 
+
 function CepModal() {
     const [isOpen, setIsOpen] = useState(false);
     const [showOptions, setShowOptions] = useState(false);
     const [cep, setCep] = useState('');
+    const [isTyping, setIsTyping] = useState(false);
     const [endereco, setEndereco] = useState<Endereco | null>(null);
     const [erro, setErro] = useState<string | null>(null);
     const [lojaProxima, setLojaProxima] = useState<Loja | null>(null);
+    const navigate = useNavigate();
 
     const toggleOpen = () => {
         setIsOpen(!isOpen);
         setShowOptions(false);
     };
 
-    const buscarEndereco = async () => {
+    const formatCep = useCallback((value: string) => {
+        const cleanedValue = value.replace(/\D/g, '');
+        if (cleanedValue.length <= 5) {
+            return cleanedValue;
+        } else if (cleanedValue.length === 8) {
+            return `${cleanedValue.slice(0, 5)}-${cleanedValue.slice(5)}`;
+        }
+        return cleanedValue;
+    }, []);
+
+    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setCep(e.target.value);
+        setIsTyping(true);
+    }, []);
+
+    useEffect(() => {
+        if (cep.length === 8 && isTyping) {
+            setCep(formatCep(cep));
+            setIsTyping(false);
+        } else if (cep.length < 8) {
+            setIsTyping(true);
+        }
+    }, [cep, formatCep, isTyping]);
+
+    const buscarEndereco = useCallback(async () => {
         try {
-            const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+            const formattedCepForApi = cep.replace('-', '');
+            const response = await axios.get(`https://viacep.com.br/ws/${formattedCepForApi}/json/`);
             if (response.data.erro) {
                 setErro('CEP não encontrado.');
                 setEndereco(null);
             } else {
                 setEndereco(response.data);
                 setErro(null);
-                encontrarLojaProximaHandler(); // Chama a função para encontrar a loja mais próxima
+                encontrarLojaProximaHandler();
             }
         } catch (error) {
             setErro('Erro ao buscar CEP.');
             setEndereco(null);
         }
-    };
+    }, [cep]);
 
-    const encontrarLojaMaisProxima = (cepUsuario: string, lojas: Loja[]) => {
+    const encontrarLojaMaisProxima = useCallback((cepUsuario: string, lojas: Loja[]) => {
+        const cleanedCepUsuario = cepUsuario.replace('-', '');
         let menorDiferenca = Infinity;
         let lojaMaisProxima: Loja | null = null;
 
         for (const loja of lojas) {
-            const diferenca = Math.abs(parseInt(cepUsuario) - parseInt(loja.cep));
+            const cleanedCepLoja = loja.cep.replace('-', '');
+            const diferenca = Math.abs(parseInt(cleanedCepUsuario) - parseInt(cleanedCepLoja));
             if (diferenca < menorDiferenca) {
                 menorDiferenca = diferenca;
                 lojaMaisProxima = loja;
             }
         }
-
         return lojaMaisProxima;
-    };
+    }, []);
 
-    const encontrarLojaProximaHandler = () => {
-        const loja = encontrarLojaMaisProxima(cep, lojas);
+    const encontrarLojaProximaHandler = useCallback(() => {
+        const formattedCepForSearch = cep.replace('-', '');
+        const loja = encontrarLojaMaisProxima(formattedCepForSearch, lojas);
         setLojaProxima(loja);
         setShowOptions(true);
+    }, [cep, encontrarLojaMaisProxima, lojas]);
+
+    const handleShopClick = () => {
+        navigate('/bag');
     };
+
 
     return (
         <div className={styles['cep-modal']}>
@@ -86,7 +122,9 @@ function CepModal() {
                     type="text"
                     placeholder="00000-000"
                     value={cep}
-                    onChange={(e) => setCep(e.target.value)}
+                    onChange={handleInputChange}
+                    className={styles['number-content-input']}
+                    maxLength={9}
                 />
                 <span className={styles['arrow-icon']}> <img src={arrowIco} alt="" /></span>
             </div>
@@ -98,7 +136,9 @@ function CepModal() {
                         type="text"
                         placeholder="Digite o CEP"
                         value={cep}
-                        onChange={(e) => setCep(e.target.value)}
+                        onChange={handleInputChange}
+                        maxLength={8}
+                        onBlur={() => setCep(formatCep(cep))}
                     />
                     <button className={styles['content-btn-menu']} onClick={buscarEndereco}>Verificar</button>
                     {erro && <p style={{ color: 'red' }}>{erro}</p>}
@@ -122,7 +162,7 @@ function CepModal() {
                                 <span><img className={styles['content-home-store-ico']} src={storeIco} alt="" /></span> {lojaProxima.nome} - {lojaProxima.endereco}
                             </label>
                         </div>
-                        <button className={styles['go-shopping']}>Ir para as compras</button>
+                        <button onClick={handleShopClick} className={styles['go-shopping']}>Ir para as compras</button>
                     </div>
                 </div>
             )}
