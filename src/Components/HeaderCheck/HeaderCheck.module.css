@@ -12,3 +12,37 @@
 .logoCacau {
     color: var(--primary-brown);
 }
+
+.ico-lock-header-check {
+    display: flex;
+    justify-content: end;
+    padding: 0px 65px;
+    margin-top: -35px;
+
+    img {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+.text-lock-header-check {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .ico-lock-header-check {
+        margin-right: -60px;
+        margin-top: -31px;
+    }
+
+    .text-lock-header-check {
+        font-size: small;
+        display: flex;
+        justify-content: center;
+        margin-top: 3px;
+    }
+
+    .logoContainer {}
+}

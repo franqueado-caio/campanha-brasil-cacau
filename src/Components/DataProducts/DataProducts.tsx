@@ -82,6 +82,27 @@ const DataProducts: Product[] = [
             "• Ingredientes: chocolate ao leite (açúcar, leite em pó, manteiga de cacau, massa de cacau, gordura vegetal, gordura anidra de leite, emulsificantes: lecitina de soja e poliglicerol polirricinoleato e aromatizante), pasta Sabor Chocolate com pedaços de wafer recheado (açúcar, leite em pó integral, gordura anidra de leite, massa de cacau, gordura vegetal, wafer recheado, emulsificante lecitina de soja e aromatizante) e wafer recheado (açúcar, farinha de trigo enriquecida com ferro, ácido fólico, tiamina, riboflavina, niacina e zinco, gordura vegetal, cacau em pó, leite em pó, massa de cacau, manteiga de cacau, gordura anidra de leite, sal, emulsificantes: lecitina de soja e poliglicerol polirricinoleato, fermento químico bicarbonato de sódio, melhorador de farinha sulfato de cálcio e aromatizante). ALÉRGICOS: CONTÉM DERIVADOS DE LEITE, SOJA E TRIGO. PODE CONTER AMENDOIM, AMÊNDOAS, AVEIA, AVELÃ, CASTANHA-DE-CAJU, CASTANHA-DO-BRASIL, CENTEIO, CEVADA, MACADÂMIA, NOZES, OVO E PISTACHE. CONTÉM LACTOSE. CONTÉM GLÚTEN."
         ],
     },
+    {
+        id: 4,
+        name: 'Ovo de Páscoa Recheado Prestígio® Nestlé® 370g',
+        price: 59.90,
+        description: "O Ovo Recheado Prestígio em parceria com a Nestlé, da Brasil Cacau, é uma opção irresistível para os amantes de chocolate celebrarem a Páscoa. Com um generoso peso de 370g, este ovo traz a combinação perfeita de chocolate ao leite e um recheio delicioso inspirado no sabor clássico do Prestígio.",
+        // oldPrice: 129.99,
+        imageUrl: require("../../Assets/ProductsImg/OvodePáscoaRecheadoPrestígio®Nestlé®370g_1.png"),
+        secondaryImageUrl: require("../../Assets/ProductsImg/OvodePáscoaRecheadoPrestígio®Nestlé®370g_2.png"),
+        gallery: [
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoPrestígio®Nestlé®370g_1.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoPrestígio®Nestlé®370g_2.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoPrestígio®Nestlé®370g_3.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoPrestígio®Nestlé®370g_4.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoPrestígio®Nestlé®370g_5.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoPrestígio®Nestlé®370g_6.png")
+        ],
+        chocolateType: 'Chocolate ao Leite',
+        productInfo: 'Ovo de chocolate ao leite com recheio de coco',
+        ingredients: [
+            "Açúcar, manteiga de cacau, pasta de cacau, coco ralado, xarope de glicose, leite em pó integral, água, soro de leite em pó parcialmente desmineralizado, creme vegetal, coco ralado desidratado, álcool de cereais, estabilizantes: sorbitol e carboximetilcelulose sódica, emulsificantes: lecitina de soja e poliglicerol polirricinoleato, conservador sorbato de potássio e aromatizantes. ALÉRGICOS: CONTÉM DERIVADOS DE LEITE E SOJA. PODE CONTER AMENDOIM, AMÊNDOAS, AVEIA, AVELÃ, CASTANHA-DE-CAJU, CASTANHA-DO-BRASIL, CENTEIO, CEVADA, MACADÂMIA, NOZES, OVOS, PISTACHE E TRIGO. CONTÉM LACTOSE. CONTÉM GLÚTEN."],
+    },
 ];
 
 export default DataProducts;
