@@ -103,6 +103,66 @@ const DataProducts: Product[] = [
         ingredients: [
             "Açúcar, manteiga de cacau, pasta de cacau, coco ralado, xarope de glicose, leite em pó integral, água, soro de leite em pó parcialmente desmineralizado, creme vegetal, coco ralado desidratado, álcool de cereais, estabilizantes: sorbitol e carboximetilcelulose sódica, emulsificantes: lecitina de soja e poliglicerol polirricinoleato, conservador sorbato de potássio e aromatizantes. ALÉRGICOS: CONTÉM DERIVADOS DE LEITE E SOJA. PODE CONTER AMENDOIM, AMÊNDOAS, AVEIA, AVELÃ, CASTANHA-DE-CAJU, CASTANHA-DO-BRASIL, CENTEIO, CEVADA, MACADÂMIA, NOZES, OVOS, PISTACHE E TRIGO. CONTÉM LACTOSE. CONTÉM GLÚTEN."],
     },
+    {
+        id: 5,
+        name: 'Ovo de Páscoa Recheado Chokito® Nestlé® 370g',
+        price: 59.90,
+        description: "O Ovo de Páscoa Chokito® certamente é a parceria mais recheada da Brasil Cacau. Produzido com chocolate ao lete, o Ovo Chokito® conta com uma casca crocante com o inconfundível flocos de arroz Chokito® e um delicioso recheio de caramelo. Edição Limitada. Aproveite!",        // oldPrice: 129.99,
+        imageUrl: require("../../Assets/ProductsImg/OvodePáscoaRecheadoChokito®Nestlé®370g_1.png"),
+        secondaryImageUrl: require("../../Assets/ProductsImg/OvodePáscoaRecheadoChokito®Nestlé®370g_2.png"),
+        gallery: [
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoChokito®Nestlé®370g_1.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoChokito®Nestlé®370g_2.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoChokito®Nestlé®370g_3.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoChokito®Nestlé®370g_4.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoChokito®Nestlé®370g_5.png"),
+            require("../../Assets/ProductsImg/OvodePáscoaRecheadoChokito®Nestlé®370g_6.png")
+        ],
+        chocolateType: 'Chocolate ao Leite',
+        productInfo: 'Ovo de chocolate ao leite com recheio de coco',
+        ingredients: [
+            "Açúcar, manteiga de cacau, pasta de cacau, coco ralado, xarope de glicose, leite em pó integral, água, soro de leite em pó parcialmente desmineralizado, creme vegetal, coco ralado desidratado, álcool de cereais, estabilizantes: sorbitol e carboximetilcelulose sódica, emulsificantes: lecitina de soja e poliglicerol polirricinoleato, conservador sorbato de potássio e aromatizantes. ALÉRGICOS: CONTÉM DERIVADOS DE LEITE E SOJA. PODE CONTER AMENDOIM, AMÊNDOAS, AVEIA, AVELÃ, CASTANHA-DE-CAJU, CASTANHA-DO-BRASIL, CENTEIO, CEVADA, MACADÂMIA, NOZES, OVOS, PISTACHE E TRIGO. CONTÉM LACTOSE. CONTÉM GLÚTEN."],
+    },
+    {
+        id: 6,
+        name: 'Combo Páscoa Recheio Duo',
+        price: 79.90,
+        description: "Contém: 1 Ovo de Páscoa Recheado Gato Mia Duo 410g, 1 Tablete Recheado Duo Gato Mia 90g, 2 Canudos Duo Turma da Mônica 20g e 2 Trufas Duo 30g.",
+        imageUrl: require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_1.png"),
+        secondaryImageUrl: require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_2.png"),
+        gallery: [
+            require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_1.png"),
+            require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_2.png"),
+            require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_3.png"),
+            require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_4.png"),
+            require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_5.png"),
+            // require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_6.png")
+        ],
+        chocolateType: 'Recheados',
+        productInfo: 'Ovo de chocolate ao leite com recheio de coco',
+        ingredients: [
+            "Contém: 1 Ovo de Páscoa Recheado Gato Mia Duo 410g, 1 Tablete Recheado Duo Gato Mia 90g, 2 Canudos Duo Turma da Mônica 20g e 2 Trufas Duo 30g."],
+    },
+    {
+        id: 7,
+        name: 'Combo Páscoa Recheada Bem me Faz',
+        price: 79.90,
+        description: "Contém: 1 Ovo de Páscoa Recheado Trufado Bem me Faz 370g, 1 Gato Mia Bem me Faz 70g e 3 Bombons Bem me Faz Gato Mia 20g.",
+        imageUrl: require("../../Assets/ProductsImg/ComboPáscoaRecheadaBemmeFaz_1.png"),
+        secondaryImageUrl: require("../../Assets/ProductsImg/ComboPáscoaRecheadaBemmeFaz_2.png"),
+        gallery: [
+            require("../../Assets/ProductsImg/ComboPáscoaRecheadaBemmeFaz_1.png"),
+            require("../../Assets/ProductsImg/ComboPáscoaRecheadaBemmeFaz_2.png"),
+            require("../../Assets/ProductsImg/ComboPáscoaRecheadaBemmeFaz_4.png"),
+            require("../../Assets/ProductsImg/ComboPáscoaRecheadaBemmeFaz_5.png"),
+            // require("../../Assets/ProductsImg/ComboPáscoaRecheioDuo_6.png")
+        ],
+        chocolateType: 'Recheados',
+        productInfo: 'Zero Açúcar e Zero Lactose',
+        ingredients: [
+            "Contém: 1 Ovo de Páscoa Recheado Trufado Bem me Faz 370g, 1 Gato Mia Bem me Faz 70g e 3 Bombons Bem me Faz Gato Mia 20g."
+        ],
+    },
 ];
 
 export default DataProducts;
