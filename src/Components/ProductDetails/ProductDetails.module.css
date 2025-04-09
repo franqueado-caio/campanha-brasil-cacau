@@ -127,3 +127,111 @@ li {
         width: 100%;
     }
 }
+
+.cep-input button {
+    padding: 8px 15px;
+    background-color: var(--primary-orange);
+    /* Cor laranja predominante */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cep-input input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 5px;
+    width: 60%;
+    outline: none;
+}
+
+.cep-input button:hover {
+    background-color: #d46a0d;
+}
+
+.shipping-options-list {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.shipping-options-list h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: #333;
+}
+
+.shipping-options-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.shipping-options-list li {
+    margin-bottom: 8px;
+}
+
+.shipping-options-list label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.shipping-options-list input[type="radio"] {
+    margin-right: 8px;
+}
+
+.free-shipping-text {
+    color: green;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.content-home-address-radio {
+    /* Estilos para os radio buttons */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-orange);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    margin-right: 10px;
+    /* Adiciona espaço entre o radio button e o texto */
+}
+
+.content-home-address-radio:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-orange);
+    border-radius: 50%;
+}
+
+.content-home-address-radio:focus {
+    box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.5);
+}
+
+.shipping-info p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    text-align: left;
+}
+
+.free-shipping {
+    font-weight: bold;
+    color: green;
+}

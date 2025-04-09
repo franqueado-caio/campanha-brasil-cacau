@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './CartCheck.module.css';
 import trash from '../../Assets/Img/garbage-can.png';
 import { BagItem, useShoppingBag } from '../../Contexts/ShoppingBagContext';
+import PaymentMethod from '../PaymentMethod/PaymentMethod'; // Importe o novo componente
 
 export interface CartCheckProps {
     bagItems: BagItem[];
@@ -9,6 +10,14 @@ export interface CartCheckProps {
 
 const CartCheck: React.FC<CartCheckProps> = ({ bagItems }) => {
     const { removeItem, updateItemQuantity } = useShoppingBag();
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+    const picPayBaseLink = 'https://picpay.me/framos2061/';
+
+    useEffect(() => {
+        const newTotalPrice = bagItems.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
+        setTotalPrice(newTotalPrice);
+    }, [bagItems]);
 
     const handleQuantityChange = (id: string | number, newQuantity: number) => {
         updateItemQuantity(id, Math.max(1, newQuantity));
@@ -17,6 +26,16 @@ const CartCheck: React.FC<CartCheckProps> = ({ bagItems }) => {
     const handleRemove = (id: string | number) => {
         removeItem(id);
     };
+
+    const handleCheckout = () => {
+        setIsPaymentModalOpen(true);
+    };
+
+    const handleClosePaymentModal = () => {
+        setIsPaymentModalOpen(false);
+    };
+
+    const picPayLinkWithTotal = `${picPayBaseLink}${totalPrice.toFixed(2)}`;
 
     return (
         <div className={styles['cart-check']}>
@@ -43,7 +62,7 @@ const CartCheck: React.FC<CartCheckProps> = ({ bagItems }) => {
                                 <h3 className={styles['item-name']}>{item.name}</h3>
                                 {item.hasOwnProperty('weight') && <span className={styles['item-weight']}>{item.weight}</span>}
                             </div>
-                            <span className={styles['item-entrega']}>Em até 3 dias úteis</span> {/* Valor fixo por enquanto */}
+                            <span className={styles['item-entrega']}>Em até 2 horas</span> {/* Valor fixo por enquanto */}
                             <div className={styles['item-preco']}>
                                 {item.oldPrice !== undefined && (
                                     <span className={styles['old-price']}>R$ {item.oldPrice.toFixed(2)}</span>
@@ -72,6 +91,20 @@ const CartCheck: React.FC<CartCheckProps> = ({ bagItems }) => {
                         </li>
                     ))}
                 </ul>
+            )}
+
+            {bagItems.length > 0 && (
+                <div className={styles['cart-summary']}>
+                    <span className={styles['total-label']}>Total:</span>
+                    <span className={styles['total-price']}>R$ {totalPrice.toFixed(2)}</span>
+                    <button className={styles['checkout-button']} onClick={handleCheckout}>
+                        Concluir Compra
+                    </button>
+                </div>
+            )}
+
+            {isPaymentModalOpen && (
+                <PaymentMethod link={picPayLinkWithTotal} onClose={handleClosePaymentModal} />
             )}
         </div>
     );

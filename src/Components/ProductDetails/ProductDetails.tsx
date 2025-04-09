@@ -10,6 +10,12 @@ interface ProductDetailsProps {
     productId?: number;
 }
 
+interface DeliveryOption {
+    id: string;
+    name: string;
+    price: number;
+}
+
 const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     const { id } = useParams<{ id?: string }>();
     const navigate = useNavigate();
@@ -25,6 +31,64 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
     const [modalTitle, setModalTitle] = useState('');
+
+    // Estados e lógica de cálculo de frete (COPIADOS DO BagSideMenu)
+    const [cep, setCep] = useState('');
+    const [formattedCep, setFormattedCep] = useState('');
+    const [showShippingOptions, setShowShippingOptions] = useState(false);
+    const [selectedShippingPrice, setSelectedShippingPrice] = useState<number | null>(null);
+    const [isCepInvalid, setIsCepInvalid] = useState(false); // Novo estado para controlar a exibição do modal
+
+    const deliveryOptions: DeliveryOption[] = [
+        { id: 'rapida', name: 'Rápida', price: 15.30 },
+        { id: 'normal', name: 'Normal', price: 10.00 }, // Adicione mais opções conforme necessário
+    ];
+    const freeShippingThreshold = 135;
+    // Para usar o freeShippingThreshold, você precisaria de alguma forma acessar o total do carrinho aqui.
+    // Como estamos na página de detalhes do produto, essa lógica pode não ser diretamente aplicável.
+    // Vou deixar como está, mas tenha em mente que 'bagTotal' não está definido neste componente.
+    const bagTotal = 0;
+    const isFreeShipping = bagTotal >= freeShippingThreshold;
+    const shippingCost = selectedShippingPrice !== null ? selectedShippingPrice : (isFreeShipping ? 0 : null);
+    const totalWithShipping = bagTotal + (shippingCost !== null ? shippingCost : 0);
+
+    const handleCepChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value.replace(/\D/g, '');
+        if (value.length <= 8) {
+            setCep(value);
+        }
+    };
+
+    useEffect(() => {
+        if (cep) {
+            if (cep.length === 8) {
+                setFormattedCep(`${cep.substring(0, 5)}-${cep.substring(5)}`);
+            } else {
+                setFormattedCep(cep);
+            }
+        } else {
+            setFormattedCep('');
+        }
+    }, [cep]);
+
+    const handleCalculateShipping = () => {
+        if (formattedCep.length === 9) {
+            setShowShippingOptions(true);
+            setIsCepInvalid(false); // Resetar o estado do modal se o CEP for válido
+            // Aqui você faria a chamada real para a API de frete, mas por enquanto, exibimos opções fixas.
+        } else {
+            setShowShippingOptions(false);
+            setIsCepInvalid(true); // Mostrar o modal de CEP inválido
+        }
+    };
+
+    const handleShippingOptionSelect = (price: number | null) => {
+        setSelectedShippingPrice(price);
+    };
+
+    const handleCloseModal = () => {
+        setIsCepInvalid(false); // Fechar o modal
+    };
 
     useEffect(() => {
         const newProduct = DataProducts.find((p) => p.id === parseInt(id || productId?.toString() || '0'));
@@ -46,7 +110,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
         }
     };
 
-    const handleCloseModal = () => {
+    const handleCloseMainModal = () => {
         setModalVisible(false);
     };
 
@@ -75,10 +139,57 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
 
             <button className={styles['add-to-cart']} onClick={handleAddToCart}>Adicionar à sacola</button>
 
-            <div className={styles['delivery-calc']}>
-                <input type="text" placeholder="Digite seu CEP" className={styles['cep-input']} />
-                <button className={styles['calc-button']}>Calcular</button>
+            {/* SEÇÃO DE CÁLCULO DE FRETE (COPIADA DO BagSideMenu) */}
+            <div className={styles['shipping-info']}>
+                {!isFreeShipping ? (
+                    <p>
+                        Falta R$ {(freeShippingThreshold - bagTotal).toFixed(2)} para atingir o{' '}
+                        <span className={styles['free-shipping']}>FRETE GRÁTIS</span>
+                    </p>
+                ) : (
+                    <p className={styles['free-shipping-reached']}>Parabéns! Você atingiu o FRETE GRÁTIS.</p>
+                )}
+                <div className={styles['shipping-calculation']}>
+                    <p>Calcular frete:</p>
+                    <div className={styles['cep-input']}>
+                        <input
+                            type="text"
+                            placeholder="Digite seu CEP"
+                            value={formattedCep}
+                            onChange={handleCepChange}
+                            maxLength={9}
+                        />
+                        <button className={styles['btn-submit-calculation']} onClick={handleCalculateShipping}>Calcular</button>
+                    </div>
+                </div>
+
+                {showShippingOptions && (
+                    <div className={styles['shipping-options-list']}>
+                        <h3>Opções de Entrega para {formattedCep}</h3>
+                        <ul>
+                            {deliveryOptions.map((option) => (
+                                <li key={option.id}>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="shippingOption"
+                                            value={option.id}
+                                            checked={selectedShippingPrice === (isFreeShipping ? 0 : option.price)}
+                                            onChange={() => handleShippingOptionSelect(isFreeShipping ? 0 : option.price)}
+                                            disabled={isFreeShipping}
+                                            className={styles['content-home-address-radio']}
+                                        />
+                                        {option.name} - R$ {(isFreeShipping ? 0 : option.price).toFixed(2)}
+                                        {isFreeShipping && <span className={styles['free-shipping-text']}>(Frete Grátis)</span>}
+                                    </label>
+                                </li>
+                            ))}
+                            {deliveryOptions.length === 0 && <p>Opções de entrega não disponíveis para este CEP.</p>}
+                        </ul>
+                    </div>
+                )}
             </div>
+            {/* FIM DA SEÇÃO DE CÁLCULO DE FRETE */}
 
             <div className={styles['description']}>
                 <div className={styles['section-header']} onClick={() => setShowDescription(!showDescription)}>
@@ -116,10 +227,18 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
 
             <ModalResponse
                 show={modalVisible}
-                onClose={handleCloseModal}
+                onClose={handleCloseMainModal}
                 title={modalTitle}
                 message={modalMessage}
             />
+            {isCepInvalid && (
+                <ModalResponse
+                    show={isCepInvalid}
+                    onClose={handleCloseModal}
+                    title="CEP Inválido"
+                    message="Por favor, digite um CEP com 8 dígitos."
+                />
+            )}
         </div>
     );
 };
