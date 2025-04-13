@@ -2,17 +2,22 @@ import React, { useState, useEffect } from 'react';
 import styles from './CartCheck.module.css';
 import trash from '../../Assets/Img/garbage-can.png';
 import { BagItem, useShoppingBag } from '../../Contexts/ShoppingBagContext';
-import PaymentMethod from '../PaymentMethod/PaymentMethod'; // Importe o novo componente
+import PaymentMethod from '../PaymentMethod/PaymentMethod'; // Importe o componente PaymentMethod
+import { useNavigate } from 'react-router-dom'; // Importe useNavigate
+import { createPaymentPreference } from './api'; // Importe a função da API
 
 export interface CartCheckProps {
     bagItems: BagItem[];
+    userId: number; // Adicione a prop para receber o ID do usuário logado
 }
 
-const CartCheck: React.FC<CartCheckProps> = ({ bagItems }) => {
+const CartCheck: React.FC<CartCheckProps> = ({ bagItems, userId }) => {
     const { removeItem, updateItemQuantity } = useShoppingBag();
     const [totalPrice, setTotalPrice] = useState(0);
-    const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
-    const picPayBaseLink = 'https://picpay.me/framos2061/';
+    const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+    const navigate = useNavigate();
+    const [paymentStatus, setPaymentStatus] = useState<'success' | 'failure' | 'pending' | null>(null);
+    const [showPaymentStatusModal, setShowPaymentStatusModal] = useState(false);
 
     useEffect(() => {
         const newTotalPrice = bagItems.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
@@ -27,15 +32,47 @@ const CartCheck: React.FC<CartCheckProps> = ({ bagItems }) => {
         removeItem(id);
     };
 
-    const handleCheckout = () => {
-        setIsPaymentModalOpen(true);
+    const handleCheckout = async () => {
+        if (!userId) {
+            console.error("ID do usuário não disponível.");
+            return;
+        }
+
+        setIsCheckoutLoading(true);
+        try {
+            const data = await createPaymentPreference(totalPrice, Date.now(), userId);
+
+            if (data && data.init_point) {
+                window.location.href = data.init_point;
+            } else {
+                console.error("Erro ao obter init_point:", data);
+                setPaymentStatus('failure');
+                setShowPaymentStatusModal(true);
+            }
+        } catch (error: any) {
+            console.error("Erro ao criar preferência de pagamento:", error);
+            setPaymentStatus('failure');
+            setShowPaymentStatusModal(true);
+            // Você pode exibir uma mensagem de erro mais amigável ao usuário aqui,
+            // talvez baseada na mensagem de erro da API.
+        } finally {
+            setIsCheckoutLoading(false);
+        }
     };
 
-    const handleClosePaymentModal = () => {
-        setIsPaymentModalOpen(false);
+    const closePaymentStatusModal = () => {
+        setShowPaymentStatusModal(false);
+        setPaymentStatus(null);
     };
 
-    const picPayLinkWithTotal = `${picPayBaseLink}${totalPrice.toFixed(2)}`;
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const statusParam = params.get('payment_status');
+        if (statusParam === 'success' || statusParam === 'failure' || statusParam === 'pending') {
+            setPaymentStatus(statusParam);
+            setShowPaymentStatusModal(true);
+        }
+    }, [window.location.search]);
 
     return (
         <div className={styles['cart-check']}>
@@ -97,14 +134,14 @@ const CartCheck: React.FC<CartCheckProps> = ({ bagItems }) => {
                 <div className={styles['cart-summary']}>
                     <span className={styles['total-label']}>Total:</span>
                     <span className={styles['total-price']}>R$ {totalPrice.toFixed(2)}</span>
-                    <button className={styles['checkout-button']} onClick={handleCheckout}>
-                        Concluir Compra
+                    <button className={styles['checkout-button']} onClick={handleCheckout} disabled={isCheckoutLoading}>
+                        {isCheckoutLoading ? 'Redirecionando...' : 'Concluir Compra'}
                     </button>
                 </div>
             )}
 
-            {isPaymentModalOpen && (
-                <PaymentMethod link={picPayLinkWithTotal} onClose={handleClosePaymentModal} />
+            {showPaymentStatusModal && paymentStatus && (
+                <PaymentMethod status={paymentStatus} onClose={closePaymentStatusModal} />
             )}
         </div>
     );

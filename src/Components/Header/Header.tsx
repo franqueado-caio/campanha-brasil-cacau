@@ -25,7 +25,7 @@ function Header({ /* onBagIconClick */ }: HeaderProps) {
 
     const handleLogout = () => {
         logout();
-        navigate('/login');
+        navigate('/');
     };
 
     const handleBagClick = (e: React.MouseEvent<HTMLAnchorElement>) => {

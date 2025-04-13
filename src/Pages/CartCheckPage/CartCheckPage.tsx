@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderCheck from '../../Components/HeaderCheck/HeaderCheck';
 import CartCheck from '../../Components/CartCheck/CartCheck';
 import Footer from '../../Components/Footer/Footer';
 import styles from './CartCheckPage.module.css';
 import { useShoppingBag } from '../../Contexts/ShoppingBagContext';
 import DeliveryOptions from '../../Components/DeliveryOptions/DeliveryOptions'; // Importa o componente DeliveryOptions
+import { useAuth } from '../../Contexts/AuthContext'; // Importe o hook useAuth
 
 const CartCheckPage = () => {
     const { bagItems } = useShoppingBag();
+    const { loggedInUser } = useAuth(); // Obtenha o usuário logado do contexto de autenticação
     const [deliveryPrice, setDeliveryPrice] = useState<number | null>(null);
     const [pickupPrice, setPickupPrice] = useState<number | null>(null);
     const [zipCode, setZipCode] = useState(''); // Você pode manter o estado do CEP aqui se precisar dele para outras coisas
@@ -40,12 +42,19 @@ const CartCheckPage = () => {
         return totalPrice.toFixed(2);
     };
 
+    // Garanta que loggedInUser não seja null antes de acessar o ID
+    const userId = loggedInUser?.id;
+
+    if (!userId) {
+        return <div>Carregando informações do usuário...</div>; // Ou redirecione para a página de login
+    }
+
     return (
         <div className={styles['content-header-check']}>
             <HeaderCheck />
             <div className={styles['cart-content']}>
                 <h1 className={styles['cart-content-title']}>Revisão do seu pedido</h1>
-                <CartCheck bagItems={bagItems} />
+                <CartCheck bagItems={bagItems} userId={userId} /> {/* Passe o userId do usuário logado */}
                 <div className={styles['delivery-options-section']}>
                     <h2 className={styles['cart-content-title']}>Opções de Entrega e Retirada</h2>
                     <DeliveryOptions
