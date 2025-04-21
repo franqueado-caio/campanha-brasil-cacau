@@ -8,10 +8,16 @@ import DataProducts, { Product } from '../../Components/DataProducts/DataProduct
 import ProductInspect, { ProductInspectProps } from '../../Components/ProductInspect/ProductInspect'; // Importe a interface de props
 import ProductDetails from '../../Components/ProductDetails/ProductDetails';
 
+
 const ProductInpectPage = () => {
     const { id } = useParams<{ id?: string }>();
     const navigate = useNavigate();
     const [product, setProduct] = useState<Product | undefined>(undefined);
+    const [filteredProducts, setFilteredProducts] = useState(DataProducts);
+
+    const handleSearchResults = (results: Product[]) => {
+        setFilteredProducts(results);
+    };
 
     useEffect(() => {
         const foundProduct = DataProducts.find((p) => p.id === parseInt(id || '0'));
@@ -29,7 +35,7 @@ const ProductInpectPage = () => {
     return (
         <div className={styles['product-inspect-page']}>
             <div className={styles['content-product-inspect-page']}>
-                <Header />
+                <Header onSearchResults={handleSearchResults} />
                 <ProductInspect
                     product={{
                         id: product.id,

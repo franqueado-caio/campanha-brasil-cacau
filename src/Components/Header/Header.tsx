@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Header.module.css';
 import styles from './Header.module.css';
 import searchIcon from '../../Assets/Img/search.png';
 import userIco from '../../Assets/Img/user.png';
@@ -9,19 +8,24 @@ import { useNavigation } from './script';
 import LoginOrRegisterModal from '../LoginOrRegisterModal/LoginOrRegisterModal';
 import { useAuth } from '../../Contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { useShoppingBag } from '../../Contexts/ShoppingBagContext'; // Importe o hook do contexto
+import { useShoppingBag } from '../../Contexts/ShoppingBagContext';
+import ModalResponse from '../ModalResponse/ModalResponse';
+import { Product, DataProducts } from '../DataProducts/DataProducts'; // Importe corretamente
 
 interface HeaderProps {
-    // onBagIconClick?: () => void; // Remova ou deixe como está, a lógica agora está interna
+    onSearchResults: (results: Product[]) => void;
 }
 
-function Header({ /* onBagIconClick */ }: HeaderProps) {
+function Header({ onSearchResults }: HeaderProps) {
     const { navigateToHome } = useNavigation();
-    const [showModal, setShowModal] = useState(false);
+    const [showModalLogin, setShowModalLogin] = useState(false);
     const { loggedInUser, logout } = useAuth();
     const navigate = useNavigate();
-    const { bagItems } = useShoppingBag(); // Acesse os itens da sacola
+    const { bagItems } = useShoppingBag();
     const itemCount = bagItems.reduce((sum, item) => sum + item.quantity, 0);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [showNoResultsModal, setShowNoResultsModal] = useState(false);
+    const noResultsMessage = "As ofertas do dia de hoje são para trufas e ovos de páscoa";
 
     const handleLogout = () => {
         logout();
@@ -30,7 +34,25 @@ function Header({ /* onBagIconClick */ }: HeaderProps) {
 
     const handleBagClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        navigate('/bag'); // Navega para a página da sacola
+        navigate('/bag');
+    };
+
+    const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleSearchSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+        const term = searchTerm.toLowerCase();
+        const results = DataProducts.filter((product: Product) => // Defina o tipo explicitamente
+            product.category && product.category.toLowerCase().includes(term)
+        );
+        onSearchResults(results);
+        setShowNoResultsModal(results.length === 0 && term !== '');
+    };
+
+    const handleCloseNoResultsModal = () => {
+        setShowNoResultsModal(false);
     };
 
     return (
@@ -45,25 +67,27 @@ function Header({ /* onBagIconClick */ }: HeaderProps) {
                     <div id="navbarNav">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item search-input-mobile" >
-                                <form className="form-inline my-2 my-lg-0 d-flex align-items-center">
+                                <form className="form-inline my-2 my-lg-0 d-flex align-items-center" onSubmit={handleSearchSubmit}>
                                     <button type="submit" style={{ background: 'none', border: 'none', marginLeft: '10px' }}>
-                                        <img id='search-ico' src={searchIcon} alt="Buscar" style={{ width: '24px', height: '24px', position: "absolute", display: "flex", justifyContent: "flex-start", direction: "initial", marginLeft: "12px", marginTop: "-10px" }} />
+                                        <img id='search-ico' src={searchIcon} alt="Buscar" style={{ width: '24px', height: '24px', position: "relative", display: "flex", justifyContent: "flex-start", direction: "initial", left: "314px", top: "0px" }} />
                                     </button>
                                     <input
                                         className="form-control custon-input"
                                         type="search"
                                         placeholder="O que você busca? (Ex: trufa)"
                                         aria-label="Search"
+                                        value={searchTerm}
+                                        onChange={handleSearchInputChange}
                                     />
                                 </form>
                             </li>
                             <li className={styles['nav-item']} >
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                                <a className="nav-link" href="#" style={{ color: "white" }}> {/* Adicione um href válido ou use um <button> */}
                                     Seja um franqueado
                                 </a>
                             </li>
                             <li className={styles['nav-item']}>
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                                <a className="nav-link" href="#" style={{ color: "white" }}> {/* Adicione um href válido ou use um <button> */}
                                     Clube Brasil Cacau
                                 </a>
                             </li>
@@ -78,11 +102,11 @@ function Header({ /* onBagIconClick */ }: HeaderProps) {
                                 <li className={styles['user-login-or-register']}>
                                     <a
                                         className="nav-link"
-                                        href="#"
+                                        href="#" // Adicione um href válido ou use um <button>
                                         style={{ color: "white" }}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            setShowModal(true);
+                                            setShowModalLogin(true);
                                         }}
                                     >
                                         <img className={styles['iteration-header']} src={userIco} alt="login ou registro" />
@@ -91,14 +115,14 @@ function Header({ /* onBagIconClick */ }: HeaderProps) {
                                 </li>
                             )}
                             <li className={styles['nav-item']}>
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                                <a className="nav-link" href="#" style={{ color: "white" }}> {/* Adicione um href válido ou use um <button> */}
                                     <img className={styles['iteration-header']} src={suportIco} alt="Suporte" />
                                 </a>
                             </li>
                             <li className={styles['iteration-bag-item']}>
                                 <a
                                     className="nav-link"
-                                    href="#"
+                                    href="#" // Adicione um href válido ou use um <button>
                                     style={{ color: "white", cursor: "pointer", position: 'relative', display: 'inline-block' }}
                                     onClick={handleBagClick}
                                 >
@@ -124,7 +148,7 @@ function Header({ /* onBagIconClick */ }: HeaderProps) {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: "white" }}>
+                                <a className="nav-link" href="#" style={{ color: "white" }}> {/* Adicione um href válido ou use um <button> */}
                                     {/* Todos os Produtos */}
                                 </a>
                             </li>
@@ -133,7 +157,13 @@ function Header({ /* onBagIconClick */ }: HeaderProps) {
                     </div>
                 </nav>
             </div >
-            {showModal && <LoginOrRegisterModal isOpen={showModal} onClose={() => setShowModal(false)} />}
+            {showModalLogin && <LoginOrRegisterModal isOpen={showModalLogin} onClose={() => setShowModalLogin(false)} />}
+            <ModalResponse
+                show={showNoResultsModal}
+                onClose={handleCloseNoResultsModal}
+                title="Ops, nada por aqui!"
+                message={noResultsMessage}
+            />
         </header >
     );
 }

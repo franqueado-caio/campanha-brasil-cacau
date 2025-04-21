@@ -9,10 +9,20 @@ import masterIco from '../../Assets/Img/master-card-ico.svg';
 import eloIco from '../../Assets/Img/elo-ico.svg';
 import dinersIco from '../../Assets/Img/diners-ico.svg';
 import seloIco from '../../Assets/Img/recomenta-ico.webp';
+import ModalResponse, { ModalResponseProps } from '../../Components/ModalResponse/ModalResponse';
 
 function Footer() {
     const [isInstitutionalOpen, setIsInstitutionalOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [modalProps, setModalProps] = useState<ModalResponseProps>({
+        show: false,
+        title: '',
+        message: '',
+        onClose: () => setShowModal(false),
+    });
 
     const toggleInstitutional = () => {
         if (isMobile) {
@@ -26,15 +36,44 @@ function Footer() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setModalProps(prevProps => ({ ...prevProps, show: false }));
+    };
+
+    const handleSubscribeTest = () => {
+        setModalProps({
+            show: true,
+            title: 'Cadastro Realizado!',
+            message: 'Obrigado! Você receberá nossas ofertas.',
+            onClose: handleCloseModal, // Use a função para fechar o modal
+        });
+        setShowModal(true);
+        setNome('');
+        setEmail('');
+    };
+
     return (
         <footer className={styles.footer}>
             <div className={styles['footer-content']}>
                 <div className={styles['newsletter-section']}>
                     <span className={styles['newsletter-title']}>Fique por dentro das novidades</span>
                     <div className={styles['newsletter-form']}>
-                        <input type="text" placeholder="Digite seu nome" className={styles['newsletter-input']} />
-                        <input type="email" placeholder="Digite seu e-mail" className={styles['newsletter-input']} />
-                        <button className={styles['newsletter-button']}>Cadastrar</button>
+                        <input
+                            type="text"
+                            placeholder="Digite seu nome"
+                            className={styles['newsletter-input']}
+                            value={nome}
+                            onChange={(e) => setNome(e.target.value)}
+                        />
+                        <input
+                            type="email"
+                            placeholder="Digite seu e-mail"
+                            className={styles['newsletter-input']}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <button className={styles['newsletter-button']} onClick={handleSubscribeTest}>Cadastrar</button>
                     </div>
                 </div>
                 <div className={styles['social-section']}>
@@ -124,6 +163,7 @@ function Footer() {
                     <p className={styles['company-text']} >Nibs Participações S.A. (CRCM), Sociedade Anônima, com sede na Rod. Fernão Dias, SN, KM 925,8, 1º andar, sala 1, Roseira, Extrema/MG, CEP 37640-000, inscrita no CNPJ/MF sob o nº 35.539.382/0001-30, detentora da marca Chocolates Brasil Cacau.</p>
                 </div>
             </div>
+            <ModalResponse {...modalProps} />
         </footer>
     );
 }

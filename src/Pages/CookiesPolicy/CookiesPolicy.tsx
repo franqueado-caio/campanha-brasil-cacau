@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../Components/Header/Header';
 import CepModal from '../../Components/CepModal/CepModal';
 import Footer from '../../Components/Footer/Footer'
 import styles from './CookiesPolicy.module.css';
+import { Product, DataProducts } from '../../Components/DataProducts/DataProducts';
+
 
 function CookiesPolicy() {
+    const [filteredProducts, setFilteredProducts] = useState(DataProducts);
+
+    const handleSearchResults = (results: Product[]) => {
+        setFilteredProducts(results);
+    };
+
+
     return (
         <div>
-            <Header />
+            <Header onSearchResults={handleSearchResults} />
             <CepModal />
             <div className={styles['cookies-policy-content']}>
                 <h1 className={styles['text-title-policy']}>Política de Cookies</h1>

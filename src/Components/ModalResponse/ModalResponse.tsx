@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import styles from './ModalResponse.module.css'
 
-interface ModalResponseProps {
+export interface ModalResponseProps {
     show: boolean;
     onClose: () => void;
     title: string;

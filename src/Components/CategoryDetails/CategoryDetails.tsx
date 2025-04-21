@@ -1,37 +1,33 @@
-// src/Components/CategoryDetails/CategoryDetails.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard, { ProductCardProps } from '../../Components/ProductCard/ProductCard';
+import ProductCard from '../../Components/ProductCard/ProductCard';
 import styles from './CategoryDetails.module.css';
-import exampleProducts, { Product } from '../DataProducts/DataProducts';
+import { Product } from '../DataProducts/DataProducts'; // Importe a interface Product
 
 interface CategoryDetailsProps {
     searchTerm: string;
     className?: string;
     icoHeart: string;
+    products: Product[]; // Adicionamos a prop products do tipo Product[]
 }
 
-const CategoryDetails: React.FC<CategoryDetailsProps> = ({ searchTerm, icoHeart }) => {
+const CategoryDetails: React.FC<CategoryDetailsProps> = ({ searchTerm, className, icoHeart, products }) => {
     const navigate = useNavigate();
-
-    const filteredProducts = exampleProducts.filter(
-        (product): product is Product => product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     const handleProductClick = (product: Product) => {
         navigate(`/product/${product.id}`);
     };
 
     return (
-        <div className={styles['category-details']}>
+        <div className={`${styles['category-details']} ${className}`}>
             <div className={styles['product-section']}>
-                {filteredProducts.map((product) => (
+                {products.map((product) => ( // Renderiza a lista de produtos recebida via prop
                     <ProductCard
                         key={product.id}
                         product={{
                             id: product.id,
                             name: product.name,
-                            imageUrl: product.imageUrl || '', // Garante que imageUrl seja string
+                            imageUrl: product.imageUrl || '',
                             secondaryImageUrl: product.secondaryImageUrl,
                             price: product.price,
                             discount: product.discount,
